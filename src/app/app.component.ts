@@ -1,3 +1,4 @@
+import { Produtos } from './model/produtos';
 import { Component } from '@angular/core';
 import { Usuario } from './model/usuario';
 

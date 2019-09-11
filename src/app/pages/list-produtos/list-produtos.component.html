@@ -1,0 +1,19 @@
+<section class="container">    
+    <table *ngIf="produtos | async as users" class="table">
+        <tr>
+            <th> ID </th>
+            <th> Nome </th>
+            <th> Tipos </th>
+            <th> Quantidade </th>
+            <th> Valor </th>
+        </tr>
+          <tr *ngFor="let u of users">
+             <td>{{u.id}}</td>
+             <td>{{u.Nome}}</td>
+             <td>{{u.tipo}}</td>
+             <td>{{u.quantidade}}</td>
+             <td>{{u.valor}}</td>
+          </tr>
+    </table>
+</section>
+

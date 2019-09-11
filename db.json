@@ -1,0 +1,40 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Saga",
+      "email": "sagadegemeos@gmail.com",
+      "pws": "11111"
+    },
+    {
+      "id": 2,
+      "nome": "Shaka",
+      "email": "shakadevirgem@gmail.com",
+      "pws": "22222"
+    },
+    {
+      "nome": "Kanon",
+      "email": "kanondegemeos@gmail.com",
+      "pws": "333333",
+      "id": 5
+    },
+    {
+      "nome": "Lisca",
+      "email": "lisca@gmail.com",
+      "pws": "aaaaaa",
+      "id": 6
+    },
+    {
+      "nome": "Aldebaran",
+      "email": "aldebarandetouro@hotmail.com",
+      "pws": "bbbbbb",
+      "id": 7
+    },
+    {
+      "nome": "Alda",
+      "email": "alda@yahoo.com",
+      "pws": "cccccc",
+      "id": 8
+    }
+  ]
+}
