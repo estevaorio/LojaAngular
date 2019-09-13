@@ -1,8 +1,8 @@
+import { Usuario } from './../model/usuario';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
-import { Usuario } from '../model/usuario';
 import { environment } from './../../environments/environment';
 import { getAllLifecycleHooks } from '@angular/compiler/src/lifecycle_reflector';
 
@@ -10,10 +10,6 @@ import { getAllLifecycleHooks } from '@angular/compiler/src/lifecycle_reflector'
   providedIn: 'root'
 })
 export class UsuarioService {
-  usuarios: Array<Usuario> = [
-    { uid: "1", nome:"Saga", email: "sagadegemeos@gmail.com", pws:"11111"},
-    { uid: "2", nome:"Shaka", email: "shakadevirgem@gmail.com", pws:"22222"},
-  ];
 
   protected db = environment.serverAPI;
 
@@ -37,6 +33,20 @@ getAll(){
     map(change => 
       change.map(c => ({ key: c.payload.key,...c.payload.val()})))
   );
+ }
+
+ get(key){
+  return this.dbfire.list<Usuario>("usuarios").valueChanges()
+
+ }
+
+ update(usuario: Usuario,key){
+   return this.dbfire.object<Usuario>("usuarios/" + key).update
+   (usuario);
+ }
+
+ remove(key){
+   return this.dbfire.object("usuarios/" + key).remove()
  }
 
 } 
