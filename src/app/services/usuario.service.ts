@@ -36,7 +36,7 @@ getAll(){
  }
 
  get(key){
-  return this.dbfire.list<Usuario>("usuarios").valueChanges()
+  return this.dbfire.object<Usuario>("usuarios").valueChanges()
 
  }
 

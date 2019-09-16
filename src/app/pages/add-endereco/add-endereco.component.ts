@@ -5,8 +5,8 @@ import { EnderecoService } from 'src/app/services/endereco.service';
 
 @Component({
   selector: 'app-endereco',
-  templateUrl: './endereco.component.html',
-  styleUrls: ['./endereco.component.css']
+  templateUrl: './add-endereco.component.html',
+  styleUrls: ['./add-endereco.component.css']
 })
 export class EnderecoComponent implements OnInit {
 

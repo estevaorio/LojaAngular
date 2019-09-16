@@ -10,7 +10,7 @@ import { AddUsuarioComponent } from './pages/add-usuario/add-usuario.component';
 import { FormsModule } from "@angular/forms";
 import { ListUsuarioComponent } from './list-usuario/list-usuario.component';
 import { AddProdutoComponent } from './pages/add-produtos/add-produtos.component';
-import { ListProdutosComponent } from './pages/list-produtos/list-produtos.component';
+import { ListProdutoComponent } from './pages/list-produtos/list-produtos.component';
 import {EnderecoComponent } from './pages/add-endereco/add-endereco.component';
 
 //Firebase
@@ -26,7 +26,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database'
     AddUsuarioComponent,
     ListUsuarioComponent,
     AddProdutoComponent,
-    ListProdutosComponent,
+    ListProdutoComponent,
     EnderecoComponent
   ],
   imports: [

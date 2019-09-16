@@ -1,23 +1,21 @@
-import { Produtos } from './../../model/produtos';
-import { ProdutosService } from './../../services/produtos.service';
 import { Component, OnInit } from '@angular/core';
-
+import { ProdutosService } from 'src/app/services/produtos.service';
 
 @Component({
-  selector: 'app-list-produtos',
+  selector: 'app-list-produto',
   templateUrl: './list-produtos.component.html',
   styleUrls: ['./list-produtos.component.css']
 })
-export class ListProdutosComponent implements OnInit {
+export class ListProdutoComponent implements OnInit {
 
-  protected produtos:any;
+  protected produto:any;
 
   constructor(
-    public produtosService: ProdutosService,
+    public produtoService: ProdutosService,
   ) { }
 
   ngOnInit() {
-    this.produtos = this.produtosService.getAll();
+    this.produto = this.produtoService.getAll();
   }
 
 }

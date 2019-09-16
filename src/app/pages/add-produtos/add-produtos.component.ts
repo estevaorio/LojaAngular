@@ -6,8 +6,8 @@ import { ProdutosService } from 'src/app/services/produtos.service';
 
 @Component({
   selector: 'app-add-produto',
-  templateUrl: './add-produto.component.html',
-  styleUrls: ['./add-produto.component.css']
+  templateUrl: './add-produtos.component.html',
+  styleUrls: ['./add-produtos.component.css']
 })
 export class AddProdutoComponent implements OnInit {
 protected produto: Produtos = new Produtos

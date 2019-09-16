@@ -1,9 +1,9 @@
-import { Swal } from 'sweetalert2';
-import { UsuarioService } from './../../services/usuario.service';
 import { Usuario } from './../../model/usuario';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { UsuarioService } from '../../services/usuario.service';
 import { Router, ActivatedRoute } from "@angular/router";
-
+//https://sweetalert2.github.io/#download - Dados do alerta com estilo
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-usuario',
@@ -12,70 +12,77 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class AddUsuarioComponent implements OnInit {
 
-  //usuario:Usuario = new Usuario;
   protected usuario: Usuario = new Usuario;
-  private key: string = null;
+  private id: string;
 
-    constructor(
+  constructor(
     public usuarioService: UsuarioService,
-    protected router:Router,
+    protected router: Router,
     protected activedRouter: ActivatedRoute
   ) { }
 
-  ngOnInit() {      
-       this.key= this.activedRouter.snapshot.paramMap.get("key");
-       if(this.key){
-       this.usuarioService.get(this.key).subscribe(res=>{
-         this.usuario = res;
-      }
-    ); 
+  ngOnInit() {
+    this.id = this.activedRouter.snapshot.paramMap.get("id");
+    if (this.id) {
+      this.usuarioService.get(this.id).subscribe(
+        res => {
+          this.usuario = res;
+        },
+        err=>{
+           this.id = null
+        }
+      );
+    } 
   }
-}
 
-  onsubmit(form){
+  onsubmit(form) {
     console.log(form);
-    try{
-      if(this.key){
-        this.usuarioService.update(this.usuario, this.key).then(
+    try {
+      if (this.id) {
+        this.usuarioService.update(this.usuario, this.id).then(
           res => {
             //console.log(res);
             this.usuario = new Usuario;
             form.reset();
-            this.router.navigate(['/']);
+            this.router.navigate(["/"]);
             Swal.fire("Atualizado!")
           },
-          err=>{
+          err => {
             //console.log(err);
             Swal.fire({
-              type:'error',
+              type: 'error',
               title: 'Oops...',
-              text:'Erro ao atualizar o usuario!\nVerifique os dados!',
+              text: 'Erro ao autalizar o usuario!\nVerifique os dados!',
             })
           }
-        );
-      }else{    
-    this.usuarioService.save(this.usuario).then(
-      res =>{
-        console.log(res);
-        this.usuario = new Usuario;
-        form.reset();
-        this.router.navigate(["/"]);
-        Swal.fire("Cadastrado!")
-      },
-      err=>{
-        console.log(err);
-        Swal.fire({
-          type:'error',
-          title: 'Oops...',
-          text:'Erro ao cadastrar o usuario!\nVerifique os dados!',
-        })
+        )
+      } else {
+        this.usuarioService.save(this.usuario).then(
+          res => {
+            console.log(res);
+            this.usuario = new Usuario;
+            form.reset();
+            this.router.navigate(["/"]);
+            Swal.fire("Cadastrado!")
+          },
+          err => {
+            console.log(err);
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: 'Erro ao cadastrar o usuario!\nVerifique os dados!',
+            })
+          }
+        )
       }
-    );
-    this.usuario = new Usuario;
-     //console.log(this.usuario, this.usuarioService.usuarios);
-      form.reset();
-        this.router.navigate(["/addUsuario"]);
+    } catch (e) {
+      Swal.fire({
+        type: 'warning',
+        title: 'Oops...',
+        text: 'Algo deu errado ao acessar a base de dados.',
+        footer: '<a href="/">Ligue para nosso suporte ?</a>'
+      })
+    }
   }
 
-  }
 }
